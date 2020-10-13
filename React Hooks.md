@@ -1,8 +1,8 @@
 <!--
  * @Author: your name
  * @Date: 2020-09-28 18:37:08
- * @LastEditTime: 2020-09-28 18:37:33
- * @LastEditors: your name
+ * @LastEditTime: 2020-10-13 09:56:25
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \WisdomAuditWebc:\Users\Administrator\Desktop\JS基础\React Hooks.md
 -->
@@ -29,3 +29,32 @@ React Hooks 就是那些钩子。
 ### - useContext
 
 **共享状态钩子**
+
+### - useReducer
+
+```javascript
+// 定义reducer
+const initState = { count: 1, color: '' }
+const reducer = function(state, {type, payload }) {
+  switch (type) {
+    case 'increment':
+      return { ...state, count: state.count + 1 }
+    case 'theme':
+      return { ...state, color: payload.color }
+    default:
+      throw new Error()
+  }
+}
+...
+// 组件调用
+const [state, dispatch] = useReducer(reducer, initState)
+
+function increment() {
+  dispatch({ type: 'increment' })
+}
+
+function changeTheme() {
+  dispatch({ type: 'theme', payload: {color: 'red' } })
+}
+
+```
